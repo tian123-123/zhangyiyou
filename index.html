@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>掌易游 · 综合游戏服务交易平台</title>
+<meta name="description" content="掌易游是涵盖游戏充值、代练、陪玩、装备、道具等品类的综合性游戏服务交易平台。实名交易、过程留证、平台保障，买家与服务者直接对接，价格透明。">
+<style>
+  :root {
+    --navy: #244474;
+    --navy-deep: #1A3357;
+    --gold: #C9A24B;
+    --gold-deep: #8C6D1F;
+    --bg: #F6F8FC;
+    --ink: #111827;
+    --muted: #6B7280;
+    --border: #E5E7EB;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.7;
+  }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* 导航 */
+  header.nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.92); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-size: 22px; font-weight: 800; color: var(--navy-deep); }
+  .logo img.mark { height: 48px; width: auto; max-width: 180px; object-fit: contain; }
+  .logo .name { display: flex; flex-direction: column; line-height: 1.1; }
+  .logo small { font-size: 11px; letter-spacing: 2px; color: var(--gold-deep); font-weight: 600; }
+  nav.menu { display: flex; gap: 30px; align-items: center; }
+  nav.menu a { text-decoration: none; color: var(--ink); font-size: 15px; font-weight: 500; }
+  nav.menu a:hover { color: var(--navy); }
+  .btn {
+    display: inline-flex; align-items: center; gap: 7px;
+    background: var(--navy); color: #fff; text-decoration: none;
+    padding: 10px 22px; border-radius: 11px; font-weight: 600; font-size: 15px;
+    transition: transform .15s, box-shadow .15s;
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(36,68,116,.28); }
+  .btn.gold { background: linear-gradient(135deg, var(--gold-deep), var(--gold)); color: #fff; }
+
+  /* Hero */
+  .hero {
+    background:
+      radial-gradient(1000px 500px at 85% -10%, rgba(201,162,75,.18), transparent 60%),
+      linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: #fff; overflow: hidden; position: relative;
+  }
+  .hero-inner { display: flex; align-items: center; gap: 50px; padding: 80px 0 90px; }
+  .hero-text { flex: 1.1; }
+  .hero-badge {
+    display: inline-block; font-size: 13px; font-weight: 600; color: var(--gold);
+    background: rgba(201,162,75,.16); border: 1px solid rgba(201,162,75,.4);
+    padding: 5px 14px; border-radius: 999px; margin-bottom: 22px;
+  }
+  .hero h1 { font-size: 46px; line-height: 1.25; font-weight: 800; letter-spacing: 1px; }
+  .hero h1 em { font-style: normal; color: var(--gold); }
+  .hero p.sub { margin-top: 20px; font-size: 18px; color: #D7E3F4; max-width: 520px; }
+  .hero-actions { margin-top: 34px; display: flex; gap: 16px; flex-wrap: wrap; }
+  .hero-trust { margin-top: 40px; display: flex; gap: 28px; flex-wrap: wrap; font-size: 14px; color: #D7E3F4; }
+  .hero-trust span { display: flex; align-items: center; gap: 7px; }
+  .hero-trust b { color: #fff; font-weight: 600; }
+  .hero-phone { flex: .9; display: flex; justify-content: center; }
+  .phone {
+    width: 250px; background: #000; border-radius: 34px; padding: 10px;
+    box-shadow: 0 30px 60px rgba(0,0,0,.45); transform: rotate(2deg);
+  }
+  .phone .screen { background: var(--bg); border-radius: 25px; height: 500px; overflow: hidden; }
+  .phone .p-head { background: #fff; padding: 14px 16px; display: flex; justify-content: space-between; font-size: 15px; font-weight: 700; color: var(--navy-deep); }
+  .phone .p-hero { margin: 12px 12px 0; padding: 16px; border-radius: 16px; background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: #fff; border: 1px solid rgba(201,162,75,.4); }
+  .phone .p-badge { display: inline-block; font-size: 10px; color: var(--gold); background: rgba(201,162,75,.2); padding: 2px 8px; border-radius: 999px; }
+  .phone .p-title { font-size: 16px; font-weight: 800; margin: 10px 0 4px; }
+  .phone .p-btn { display: inline-block; margin-top: 12px; background: var(--gold); color: var(--navy-deep); font-size: 12px; font-weight: 700; padding: 7px 12px; border-radius: 9px; }
+  .phone .p-row { margin: 10px 12px; background: #fff; border: 1px solid var(--border); border-radius: 12px; padding: 12px; font-size: 12px; color: var(--muted); }
+
+  /* 区块通用 */
+  section.block { padding: 84px 0; }
+  .block-head { text-align: center; margin-bottom: 54px; }
+  .block-head h2 { font-size: 34px; font-weight: 800; color: var(--navy-deep); }
+  .block-head p { margin-top: 12px; color: var(--muted); font-size: 16px; }
+
+  /* 服务品类 */
+  .cats { display: grid; grid-template-columns: repeat(5, 1fr); gap: 18px; }
+  .cat {
+    background: #fff; border: 1px solid var(--border); border-radius: 16px;
+    padding: 26px 16px; text-align: center;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .cat:hover { transform: translateY(-5px); box-shadow: 0 16px 32px rgba(26,51,87,.10); }
+  .cat .ic { width: 54px; height: 54px; margin: 0 auto 12px; border-radius: 14px; display: grid; place-items: center; font-size: 26px; background: rgba(201,162,75,.14); }
+  .cat h3 { font-size: 17px; color: var(--navy-deep); margin-bottom: 6px; }
+  .cat p { font-size: 13px; color: var(--muted); }
+
+  /* 卖点 */
+  .features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+  .feature {
+    background: #fff; border: 1px solid var(--border); border-radius: 18px; padding: 30px 24px;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .feature:hover { transform: translateY(-6px); box-shadow: 0 18px 36px rgba(26,51,87,.10); }
+  .feature .ic { width: 50px; height: 50px; border-radius: 13px; display: grid; place-items: center; font-size: 24px; background: rgba(201,162,75,.14); color: var(--gold-deep); margin-bottom: 18px; }
+  .feature h3 { font-size: 19px; color: var(--navy-deep); margin-bottom: 9px; }
+  .feature p { font-size: 14px; color: var(--muted); }
+
+  /* 流程 */
+  .flow { background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .steps { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; counter-reset: step; }
+  .step { text-align: center; position: relative; }
+  .step .dot {
+    width: 52px; height: 52px; margin: 0 auto 14px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: var(--gold);
+    display: grid; place-items: center; font-size: 20px; font-weight: 800;
+  }
+  .step h4 { font-size: 15px; color: var(--navy-deep); }
+  .step p { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .step::after {
+    content: ''; position: absolute; top: 26px; left: calc(50% + 32px);
+    width: calc(100% - 64px); height: 2px; background: var(--border);
+  }
+  .step:last-child::after { display: none; }
+
+  /* 下载 */
+  .download {
+    background:
+      radial-gradient(700px 400px at 50% 0%, rgba(201,162,75,.14), transparent 70%),
+      linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: #fff; text-align: center;
+  }
+  .download h2 { font-size: 34px; font-weight: 800; }
+  .download p { margin-top: 12px; color: #D7E3F4; }
+  .download .btn.gold { margin-top: 30px; font-size: 17px; padding: 14px 34px; }
+
+  /* 关于 */
+  .about { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
+  .about h2 { font-size: 28px; color: var(--navy-deep); margin-bottom: 16px; }
+  .about p { color: var(--muted); font-size: 15px; margin-bottom: 12px; }
+  .about .card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 22px; }
+  .about .card h3 { font-size: 16px; color: var(--navy-deep); margin-bottom: 8px; }
+  .about .card p { font-size: 13px; margin-bottom: 4px; }
+
+  footer {
+    background: #0F1E33; color: #94a3b8; padding: 46px 0; font-size: 13px;
+  }
+  footer .f-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+  footer a { color: #cbd5e1; text-decoration: none; }
+
+  /* 右侧悬浮侧栏 */
+  .float-bar { position: fixed; right: 14px; top: 50%; transform: translateY(-50%); z-index: 200; display: flex; flex-direction: column; gap: 10px; }
+  .float-bar a {
+    width: 58px; height: 58px; border-radius: 14px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 2px; text-decoration: none;
+    background: #fff; color: var(--navy-deep); font-size: 11px; font-weight: 600;
+    border: 1px solid var(--border); box-shadow: 0 6px 18px rgba(26,51,87,.12);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .float-bar a:hover { transform: translateY(-3px); box-shadow: 0 12px 26px rgba(26,51,87,.20); }
+  .float-bar a .fi { font-size: 20px; line-height: 1; }
+  .float-bar a.primary { background: linear-gradient(135deg, var(--gold-deep), var(--gold)); color: #fff; border: none; }
+  .float-bar a.kf { background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: #fff; border: none; }
+  .float-top { display: none; }
+  .float-top.show { display: flex; }
+
+  /* 热门游戏图标墙 */
+  .games { background: #fff; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .game-wall { display: grid; grid-template-columns: repeat(8, 1fr); gap: 18px; }
+  .game {
+    text-align: center; padding: 18px 8px; border-radius: 14px; background: var(--bg);
+    border: 1px solid var(--border); transition: transform .2s, box-shadow .2s;
+  }
+  .game:hover { transform: translateY(-4px); box-shadow: 0 12px 24px rgba(26,51,87,.10); }
+  .game .g-ic { width: 52px; height: 52px; margin: 0 auto 10px; border-radius: 14px; background: linear-gradient(135deg, var(--navy-deep), var(--navy)); display: grid; place-items: center; font-size: 24px; }
+  .game h4 { font-size: 14px; color: var(--navy-deep); }
+  .game p { font-size: 11px; color: var(--gold-deep); font-weight: 600; margin-top: 3px; }
+
+  /* 数据统计 */
+  .stats { display: flex; justify-content: center; gap: 60px; flex-wrap: wrap; margin-top: 40px; }
+  .stat { text-align: center; }
+  .stat b { font-size: 40px; font-weight: 800; color: var(--navy-deep); }
+  .stat span { display: block; font-size: 13px; color: var(--muted); margin-top: 4px; }
+
+  /* 下载区二维码 + 应用市场 */
+  .dl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: center; max-width: 820px; margin: 0 auto; }
+  .qr-box { background: #fff; border-radius: 20px; padding: 28px; text-align: center; }
+  .qr-box .qr { width: 170px; height: 170px; margin: 0 auto 14px; background: #fff; border: 1px solid var(--border); border-radius: 12px; display: grid; place-items: center; color: var(--muted); font-size: 13px; }
+  .markets { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
+  .markets span { background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.25); color: #fff; padding: 8px 16px; border-radius: 999px; font-size: 13px; }
+
+  @media (max-width: 880px) {
+    nav.menu { display: none; }
+    .hero-inner { flex-direction: column; text-align: center; padding: 56px 0 60px; }
+    .hero h1 { font-size: 32px; }
+    .hero-trust, .hero-actions { justify-content: center; }
+    .features { grid-template-columns: 1fr 1fr; }
+    .cats { grid-template-columns: repeat(2, 1fr); }
+    .steps { grid-template-columns: repeat(3, 1fr); }
+    .step::after { display: none; }
+    .about { grid-template-columns: 1fr; }
+    .game-wall { grid-template-columns: repeat(4, 1fr); }
+    .dl-grid { grid-template-columns: 1fr; }
+    .float-bar { right: 8px; }
+    .float-bar a { width: 50px; height: 50px; font-size: 10px; }
+  }
+</style>
+</head>
+<body id="top">
+
+<header class="nav">
+  <div class="wrap nav-inner">
+    <div class="logo"><img class="mark" src="logo-trademark.png" alt="掌易游商标"><span class="name">掌易游<small>ZHANGYIYOU</small></span></div>
+    <nav class="menu">
+      <a href="#services">服务品类</a>
+      <a href="#feature">产品特色</a>
+      <a href="#flow">交易流程</a>
+      <a href="#download">下载</a>
+      <a href="#about">关于我们</a>
+      <a href="#download" class="btn">立即下载</a>
+    </nav>
+  </div>
+</header>
+
+<!-- 右侧悬浮侧栏 -->
+<div class="float-bar">
+  <a href="#download" class="primary"><span class="fi">📱</span>下载App</a>
+  <a href="#contact" class="kf"><span class="fi">💬</span>咨询客服</a>
+  <a href="#contact" class=""><span class="fi">📞</span>联系我们</a>
+  <a href="#top" class="float-top" id="floatTop"><span class="fi">↑</span>顶部</a>
+</div>
+
+<div class="hero">
+  <div class="wrap hero-inner">
+    <div class="hero-text">
+      <span class="hero-badge">综合性游戏服务交易平台</span>
+      <h1>无信息差 · 无中间商<br>的<em>游戏服务交易平台</em></h1>
+      <p class="sub">掌易游是涵盖游戏充值、代练、陪玩、装备、道具等品类的综合性游戏服务交易平台。实名交易、过程留证、平台保障，买家与服务者直接对接，价格透明，安心交易。</p>
+      <div class="hero-actions">
+        <a href="#download" class="btn gold">下载掌易游 App</a>
+        <a href="#feature" class="btn" style="background:rgba(255,255,255,.14)">了解平台</a>
+      </div>
+      <div class="hero-trust">
+        <span>✓ <b>实名交易</b></span>
+        <span>✓ <b>过程留证</b></span>
+        <span>✓ <b>平台保障</b></span>
+      </div>
+    </div>
+    <div class="hero-phone">
+      <div class="phone">
+        <div class="screen">
+          <div class="p-head">掌易游 <span style="color:var(--gold-deep)">老板 ▾</span></div>
+          <div class="p-hero">
+            <span class="p-badge">当前身份 · 老板</span>
+            <div class="p-title">无信息差与中间商<br>的游戏服务平台</div>
+            <span class="p-btn">浏览服务商品 →</span>
+          </div>
+          <div class="p-row">首发游戏 · 三角洲行动 · 和平精英</div>
+          <div class="p-row">查看公开普通商品 →</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="block" id="services" style="padding:64px 0 72px">
+  <div class="wrap">
+    <div class="block-head">
+      <h2>一站式游戏服务品类</h2>
+      <p>掌易游是涵盖游戏充值、代练、陪玩、装备、道具等品类的综合性游戏服务交易平台</p>
+    </div>
+    <div class="cats">
+      <div class="cat">
+        <div class="ic">💎</div>
+        <h3>游戏充值</h3>
+        <p>点券直充极速到账，优惠价格一目了然</p>
+      </div>
+      <div class="cat">
+        <div class="ic">🏆</div>
+        <h3>游戏代练</h3>
+        <p>大神实名接单，段位目标按约交付</p>
+      </div>
+      <div class="cat">
+        <div class="ic">🎧</div>
+        <h3>游戏陪玩</h3>
+        <p>语音开黑娱乐互动，找搭子更简单</p>
+      </div>
+      <div class="cat">
+        <div class="ic">⚔️</div>
+        <h3>装备交易</h3>
+        <p>稀缺装备一站淘选，验货交接有保障</p>
+      </div>
+      <div class="cat">
+        <div class="ic">🎁</div>
+        <h3>道具交易</h3>
+        <p>皮肤道具自由买卖，定价透明无差价</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="games" id="games">
+  <div class="wrap" style="padding:72px 24px">
+    <div class="block-head">
+      <h2>覆盖热门游戏 · 一键发布服务</h2>
+      <p>覆盖主流手游与端游，支持 100+ 热门游戏的充值、代练、陪玩、装备、道具交易</p>
+    </div>
+    <div class="game-wall">
+      <div class="game"><div class="g-ic">🎮</div><h4>王者荣耀</h4><p>服务者在线</p></div>
+      <div class="game"><div class="g-ic">🔫</div><h4>和平精英</h4><p>服务者在线</p></div>
+      <div class="game"><div class="g-ic">⚔️</div><h4>三角洲行动</h4><p>服务者在线</p></div>
+      <div class="game"><div class="g-ic">🏰</div><h4>原神</h4><p>服务者在线</p></div>
+      <div class="game"><div class="g-ic">🗡️</div><h4>永劫无间</h4><p>服务者在线</p></div>
+      <div class="game"><div class="g-ic">🛡️</div><h4>无畏契约</h4><p>服务者在线</p></div>
+      <div class="game"><div class="g-ic">🐉</div><h4>英雄联盟</h4><p>服务者在线</p></div>
+      <div class="game"><div class="g-ic">➕</div><h4>更多游戏</h4><p>持续接入中</p></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>100+</b><span>热门游戏覆盖</span></div>
+      <div class="stat"><b>5 大</b><span>服务品类</span></div>
+      <div class="stat"><b>7×24</b><span>客服在线</span></div>
+      <div class="stat"><b>全程</b><span>资金托管保障</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="feature">
+  <div class="wrap">
+    <div class="block-head">
+      <h2>为什么选择掌易游</h2>
+      <p>用可靠的技术底座，解决游戏服务交易的信息差与信任难题</p>
+    </div>
+    <div class="features">
+      <div class="feature">
+        <div class="ic">🔗</div>
+        <h3>无中间商</h3>
+        <p>买家与服务者直接建立交易，平台不赚差价，服务定价由服务者自主设定，价格公开透明。</p>
+      </div>
+      <div class="feature">
+        <div class="ic">🛡</div>
+        <h3>实名交易</h3>
+        <p>买卖双方均须完成实名认证方可参与交易，从源头保障交易对象真实可信。</p>
+      </div>
+      <div class="feature">
+        <div class="ic">📋</div>
+        <h3>过程留证</h3>
+        <p>订单自承接、开工、提交验收到确认结算全程留痕，产生争议可追溯、可举证。</p>
+      </div>
+      <div class="feature">
+        <div class="ic">💰</div>
+        <h3>资金保障</h3>
+        <p>付款后资金进入保护期托管，买家确认或保护期满后结算，降低交易风险。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="flow" id="flow">
+  <div class="wrap" style="padding:84px 24px">
+    <div class="block-head">
+      <h2>交易流程 · 六步闭环</h2>
+      <p>从下单到结算，每一步都有据可依</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="dot">1</div><h4>确认下单</h4><p>选定商品与SKU</p></div>
+      <div class="step"><div class="dot">2</div><h4>付款锁定</h4><p>资金进入保护期</p></div>
+      <div class="step"><div class="dot">3</div><h4>服务者承接</h4><p>确认接单</p></div>
+      <div class="step"><div class="dot">4</div><h4>开工</h4><p>进入履约中</p></div>
+      <div class="step"><div class="dot">5</div><h4>提交验收</h4><p>等待买家确认</p></div>
+      <div class="step"><div class="dot">6</div><h4>确认结算</h4><p>交易完成</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="download" id="download">
+  <div class="wrap" style="padding:84px 24px">
+    <div style="background:#fff;border-radius:20px;padding:16px 28px;display:inline-block;margin-bottom:20px;box-shadow:0 16px 38px rgba(0,0,0,.30)">
+      <img src="logo-trademark.png" alt="掌易游商标" style="height:104px;width:auto;display:block;">
+    </div>
+    <h2>立即体验掌易游</h2>
+    <p>下载 App，开启可信赖的游戏服务交易</p>
+    <div class="dl-grid">
+      <div class="qr-box">
+        <div class="qr">📱<br>扫码下载<br>掌易游 App</div>
+        <a href="#" class="btn gold">下载 Android 版</a>
+      </div>
+      <div style="text-align:left">
+        <p style="font-size:15px;color:#D7E3F4;margin-bottom:18px">各大应用市场均可下载，也可扫描左侧二维码快速获取安装包。</p>
+        <div class="markets">
+          <span>华为应用市场</span><span>小米应用商店</span><span>OPPO 软件商店</span><span>vivo 应用商店</span><span>应用宝</span>
+        </div>
+        <div style="margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.2)">
+          <p style="font-size:13px;color:#D7E3F4">商务合作 / 反馈：admin@zhangyiyou.com</p>
+          <p style="font-size:13px;color:#D7E3F4;margin-top:4px">客服热线：400-000-0000（7×24 小时）</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="contact">
+  <div class="wrap about">
+    <div>
+      <h2>关于掌易游</h2>
+      <p>掌易游是一个涵盖游戏充值、代练、陪玩、装备、道具等品类的综合性游戏服务交易平台，致力于打造一个可信赖、无信息差、无中间商的游戏服务交易环境。</p>
+      <p>我们相信，透明、可信、有保障的规则，能让游戏玩家与服务者之间建立真正放心的连接。</p>
+      <p style="font-size:14px;color:var(--muted)">掌易游仅为买卖双方提供第三方担保交易服务，平台本身不提供任何游戏充值、代练、陪玩、装备、道具服务。</p>
+    </div>
+    <div class="card">
+      <h3>运营主体</h3>
+      <p>武汉金舰文化传媒有限公司</p>
+      <h3 style="margin-top:14px">联系我们</h3>
+      <p>商务合作 / 反馈：admin@zhangyiyou.com</p>
+      <p>客服热线：400-000-0000（7×24 小时）</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap f-inner">
+    <span>© 2026 武汉金舰文化传媒有限公司 · 掌易游</span>
+    <span>
+      <a href="agreement.html">用户协议</a> · <a href="privacy.html">隐私政策</a> · <a href="parental.html">家长监护</a> ·
+      <a href="https://beian.miit.gov.cn/" target="_blank" rel="noopener" style="color:#cbd5e1;">鄂ICP备2023011545号-3</a>
+    </span>
+  </div>
+</footer>
+
+<script>
+  // 返回顶部按钮滚动显示
+  var ft = document.getElementById('floatTop');
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 400) { ft.classList.add('show'); }
+    else { ft.classList.remove('show'); }
+  });
+</script>
+
+</body>
+</html>

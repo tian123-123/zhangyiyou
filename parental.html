@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>家长监护 · 掌易游</title>
+<style>
+  :root {
+    --navy: #244474; --navy-deep: #1A3357; --gold: #C9A24B; --gold-deep: #8C6D1F;
+    --bg: #F6F8FC; --ink: #1F2937; --muted: #6B7280; --border: #E5E7EB;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif; color: var(--ink); background: var(--bg); line-height: 1.8; }
+  header.hero {
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy));
+    color: #fff; padding: 56px 0 46px; text-align: center;
+  }
+  header.hero h1 { font-size: 32px; font-weight: 800; }
+  header.hero p { color: #D7E3F4; font-size: 14px; margin-top: 8px; }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 0 24px; }
+  article { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 44px 48px; margin: -24px auto 60px; position: relative; }
+  article h2 { font-size: 19px; color: var(--navy-deep); margin: 30px 0 12px; padding-left: 12px; border-left: 4px solid var(--gold); }
+  article h2:first-child { margin-top: 0; }
+  article p { font-size: 14px; color: var(--ink); margin-bottom: 10px; }
+  article ul { margin: 6px 0 14px 22px; font-size: 14px; color: var(--ink); }
+  article li { margin-bottom: 6px; }
+  .muted { color: var(--muted); font-size: 13px; }
+  .steps { margin: 16px 0; padding: 0; list-style: none; counter-reset: s; }
+  .steps li { position: relative; padding-left: 40px; margin-bottom: 14px; font-size: 14px; }
+  .steps li::before {
+    counter-increment: s; content: counter(s);
+    position: absolute; left: 0; top: 2px; width: 26px; height: 26px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy-deep), var(--navy)); color: var(--gold);
+    display: grid; place-items: center; font-size: 13px; font-weight: 700;
+  }
+  .four { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 16px 0; }
+  .four .item { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .four .item b { display: block; color: var(--navy-deep); font-size: 15px; margin-bottom: 6px; }
+  .four .item span { font-size: 13px; color: var(--muted); }
+  .back { display: inline-block; margin-top: 30px; color: var(--navy); font-size: 14px; text-decoration: none; font-weight: 600; }
+  footer { background: #0F1E33; color: #94a3b8; padding: 34px 0; font-size: 13px; text-align: center; }
+  @media (max-width: 640px) { .four { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1>家长监护</h1>
+  <p>守护未成年人，我们一起努力</p>
+</header>
+<div class="wrap">
+<article>
+  <h2>一、我们的承诺</h2>
+  <p>掌易游高度重视未成年人的健康成长，积极配合国家关于未成年人网络保护的各项要求，建立完善的家长监护体系，切实履行平台责任。</p>
+  <p>掌易游是涵盖游戏充值、代练、陪玩、装备、道具的综合性游戏服务交易平台。针对不同服务品类的风险特征，平台对未成年人采取分级管理：</p>
+  <ul>
+    <li><strong>游戏充值、代练、装备交易、道具交易：</strong>涉及资金与账号交易，<strong>禁止未成年人使用</strong>；</li>
+    <li><strong>游戏陪玩：</strong>限制未成年人使用，须在监护人同意与陪同下进行，并受到内容与时长约束。</li>
+  </ul>
+
+  <h2>二、家长监护工程 · 四有保障</h2>
+  <p>为配合「网络游戏未成年人家长监护工程」，掌易游郑重承诺做到：</p>
+  <div class="four">
+    <div class="item"><b>有专人负责</b><span>设立专人受理监护人申请，7×8 小时接待服务</span></div>
+    <div class="item"><b>有专线电话</b><span>开通监护专线，7×24 小时全年无休</span></div>
+    <div class="item"><b>有专区设置</b><span>官网设家长监护专区，公开申请流程</span></div>
+    <div class="item"><b>有季度报告</b><span>定期汇总并汇报监护工作开展情况</span></div>
+  </div>
+
+  <h2>三、监护人可申请的管控措施</h2>
+  <ul>
+    <li>限制被监护账号的使用时间段与时长；</li>
+    <li>限制被监护账号仅可在特定日期（如周末）使用；</li>
+    <li>完全禁止被监护账号使用平台相关服务；</li>
+    <li>查询被监护账号的相关使用与消费记录。</li>
+  </ul>
+
+  <h2>四、申请流程</h2>
+  <ol class="steps">
+    <li>监护人提出申请，提供合法的监护人身份证明；</li>
+    <li>提交被监护人账号信息及期望的管控强度；</li>
+    <li>客服核实材料并回访确认；</li>
+    <li>完成账号归属判定，匹配后纳入相应限制。</li>
+  </ol>
+  <p class="muted">申请材料：《未成年人家长监护服务申请表》（可联系我们获取），监护人身份证明（身份证等）、监护关系证明、被监护人账号信息。</p>
+
+  <h2>五、给未成年人的温馨提示</h2>
+  <ul>
+    <li>主动控制游戏与网络服务的使用时间，适度娱乐，劳逸结合；</li>
+    <li>不参与可能耗费较多时间或金钱的游戏服务；</li>
+    <li>遇到压力多与家人朋友沟通，不将网络作为唯一精神寄托；</li>
+    <li>注意保护个人及家庭隐私信息，防范网络风险。</li>
+  </ul>
+
+  <h2>六、联系我们</h2>
+  <ul>
+    <li>监护专线：400-000-0000（7×24 小时）</li>
+    <li>联系邮箱：admin@zhangyiyou.com</li>
+    <li>运营主体：武汉金舰文化传媒有限公司</li>
+  </ul>
+
+  <a class="back" href="index.html">← 返回官网首页</a>
+</article>
+</div>
+<footer>© 2026 武汉金舰文化传媒有限公司 · 掌易游</footer>
+</body>
+</html>
